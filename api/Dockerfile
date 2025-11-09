@@ -9,6 +9,10 @@ FROM node:18-alpine
 WORKDIR /app
 COPY --from=builder /app/node_modules ./node_modules
 COPY index.js .
-COPY package.json .   
-...
+COPY package.json .
+
+# Expõe a porta que o index.js usa
+EXPOSE 3000
+
+# Comando para rodar a aplicação
 CMD ["npm", "start"]
