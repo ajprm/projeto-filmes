@@ -4,10 +4,9 @@
 
 **Grupo**:
 
-1.  10420681 - Anna Julia Santos de Paula - Infraestrutura/Backend/API Gateway
+1.  10420681 - Anna Julia Santos de Paula - Infraestrutura/Backend/API Gateway/ Vídeo/Testes
 2.  10419951 - Eduarda Dantas -  Lambda/Documentação
-3.  10420562 - Valéria Almeida - Criação do Diagrama de Arquitetura/ Vídeo/Testes
-
+3.  10420562 - Valéria Almeida - Criação do Diagrama de Arquitetura/ Vídeo
 ## 1\. Visão geral
 
 O domínio de negócio escolhido foi um **Catálogo de Filmes**.
