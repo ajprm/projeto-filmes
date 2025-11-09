@@ -5,25 +5,28 @@ const { Pool } = require('pg');
 const app = express();
 app.use(bodyParser.json());
 
-// !! IMPORTANTE !!
-// O ECS injetará estas variáveis de ambiente automaticamente
-// Nós vamos configurar o RDS para NÃO ter usuário/senha,
-// e sim usar a autenticação IAM (LabRole), que é mais segura e funciona no Lab.
+// --- Configuração do Banco de Dados ---
+// Verifica se a variável de ambiente DB_SSL está como 'true'
+const useSSL = process.env.DB_SSL === 'true';
+
 const pool = new Pool({
-  host: process.env.DB_HOST,     // Virá do AWS
+  host: process.env.DB_HOST,
   port: process.env.DB_PORT || 5432,
   database: process.env.DB_NAME || 'filmesdb',
-  user: process.env.DB_USER,     // Virá do AWS
-  password: process.env.DB_PASSWORD, // Virá do AWS
-  ssl: {
-    rejectUnauthorized: false // Necessário para RDS
-  }
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  // Linha crucial: usa SSL se DB_SSL=true, senão, não usa (para testes locais)
+  ssl: useSSL ? { rejectUnauthorized: false } : false
 });
 
 // Função para criar a tabela se não existir
 const initializeDb = async () => {
   try {
-    await pool.query(`
+    // Tenta conectar
+    const client = await pool.connect();
+    console.log("Conectado ao banco de dados com sucesso!");
+
+    await client.query(`
       CREATE TABLE IF NOT EXISTS filmes (
         id SERIAL PRIMARY KEY,
         titulo VARCHAR(255) NOT NULL,
@@ -33,11 +36,11 @@ const initializeDb = async () => {
       );
     `);
     console.log("Tabela 'filmes' verificada/criada com sucesso.");
+    client.release();
   } catch (err) {
-    console.error("Erro ao inicializar o banco de dados:", err);
+    console.error("ERRO AO INICIALIZAR O BANCO DE DADOS:", err);
   }
 };
-
 // --- ROTAS CRUD ---
 
 // CREATE
@@ -120,4 +123,5 @@ const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`API de Filmes rodando na porta ${port}`);
   initializeDb();
+
 });
