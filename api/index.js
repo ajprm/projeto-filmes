@@ -115,7 +115,7 @@ app.delete('/filmes/:id', async (req, res) => {
 
 // Health check para o Load Balancer
 app.get('/health', (req, res) => {
-  res.status(200).send('OK');
+  res.status(200).send('API OK - Versao 2.0');
 });
 
 // --- Iniciar Servidor ---
