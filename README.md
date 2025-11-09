@@ -19,6 +19,8 @@ Este projeto implementa um sistema de CRUD (Create, gitRead, Update, Delete) sim
 O diagrama abaixo ilustra o fluxo de dados da aplicação.
 
 
+<img width="561" height="351" alt="arquitetura1" src="https://github.com/user-attachments/assets/1660e9d8-5df0-4551-80c9-b410404bb866" />
+
 
 | Camada | Serviço | Descrição |
 |---|---|---|
