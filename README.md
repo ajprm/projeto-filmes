@@ -5,7 +5,8 @@
 **Grupo**:
 
 1.  10420681 - Anna Julia Santos de Paula - Infraestrutura/Backend/API Gateway/ Vídeo/Testes
-3.  10420655 - Letícia Santiago da Silva - Criação e configuração do container (Dockerfile)
+2. 10420655 - Letícia Santiago da Silva - Criação e configuração do container (Dockerfile)
+3.  10419951 - Eduarda Dantas -  Lambda/Documentação
 4.  10420646- Isadora Caetano Brandão de Sousa - Testes, depuração da conectividade
 5.  10420562 - Valéria Almeida - Criação do Diagrama de Arquitetura/ Vídeo/Testes
 ## 1\. Visão geral
